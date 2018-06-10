@@ -99,5 +99,41 @@ namespace ex8
                 }
             Stack.Push(v + 1);                           // запись пройденной вершины в стек
         }
+
+        // проверка графа и поиск эйлерого циикла
+        public static void EulerCycle(int v, ref Stack<int> Stack, int n, ref int[,] graph)
+        {
+            if (!CheckEven(graph, out int strMistake))   // проверка, является ли граф эйлеровым
+            {
+                Console.WriteLine("Эйлерова цикла не существует!");
+                Console.WriteLine("Вершина с нечетной степенью: {0}", strMistake + 1);
+            }
+            else
+            {
+                Search(v, ref Stack, n, ref graph);      // поиск эйлерова цикла
+            }
+        }
+
+        // является ли граф Эйлеровым (проверка четности вершин)
+        private static bool CheckEven(int[,] gr, out int numStrWithMistake)
+        {
+            var countOdd = 0;                           // кол-во заполненных ячеек (четность вершины)
+            numStrWithMistake = -1;                     // строка с ошибкой (вершина с нечетной степенью)
+            for (var i = 0; i < gr.GetLength(0); i++)
+            {
+                for (int j = 0; j < gr.GetLength(0); j++)
+                {
+                    if (gr[i, j] % 2 == 0) continue;
+                    countOdd++;
+                }
+                if (countOdd % 2 != 0 || countOdd == 0)// если вершина не является четной или является несвязной
+                {
+                    numStrWithMistake = i;             // вершина, содержащая ошибку
+                    return false;                      // граф не является эйлеровым
+                }
+                countOdd = 0;
+            }
+            return true;
+        }
     }
 }
