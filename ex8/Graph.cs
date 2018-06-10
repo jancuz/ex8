@@ -85,5 +85,19 @@ namespace ex8
                 Console.WriteLine();
             }
         }
+
+        // поиск эйлерого цикла
+        private static void Search(int v, ref Stack<int> Stack, int n, ref int[,] graph)
+        {
+            int i;
+            for (i = 0; i < n; i++)
+                if (graph[v, i] != 0)                    // если есть инцидентные ребра
+                {
+                    graph[v, i] = 0;                     // удаляем пройденное ребро
+                    graph[i, v] = 0;
+                    Search(i, ref Stack, n, ref graph);  // переход к следующей вершине, рекурсивный поиск
+                }
+            Stack.Push(v + 1);                           // запись пройденной вершины в стек
+        }
     }
 }
