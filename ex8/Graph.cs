@@ -58,5 +58,32 @@ namespace ex8
                 ans = rnd.Next(countVertex);
             return ans;
         }
+
+        // ввод графа с клавиатуры
+        public static void FormGraph(out int[,] graph)
+        {
+            int countVertex = AskData.ReadIntNumber("Введите количество вершин графа (от 2 до 20): ", 2, 20);
+            graph = new int[countVertex, countVertex];
+            for (int i = 0; i < countVertex; i++)
+            {
+                for (int j = i + 1; j < countVertex; j++)
+                {
+                    Console.WriteLine("Соединение вершин {0} и {1}", i + 1, j + 1);
+                    graph[i, j] = AskData.ReadIntNumber("Введите 0 или 1:", 0, 1);
+                    graph[j, i] = graph[i, j];
+                }
+            }
+        }
+
+        // печать графа
+        public static void ShowGraph(int[,] graph)
+        {
+            for (int i = 0; i < graph.GetLength(0); i++)
+            {
+                for (int j = 0; j < graph.GetLength(1); j++)
+                    Console.Write(graph[i, j] + " ");
+                Console.WriteLine();
+            }
+        }
     }
 }
