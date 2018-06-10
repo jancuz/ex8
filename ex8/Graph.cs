@@ -135,5 +135,13 @@ namespace ex8
             }
             return true;
         }
+
+        // печать эйлерого цикла
+        public static void ShowEulerCycle(Stack<int> cycle)
+        {
+            foreach (var c in cycle)
+                Console.Write(c + " ");
+            Console.WriteLine("\n");
+        }
     }
 }
