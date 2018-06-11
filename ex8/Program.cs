@@ -30,7 +30,7 @@ namespace ex8
                             int countVert = graph.GetLength(0);                             // кол-во вершин в графе
                             int startVert = AskData.ReadIntNumber("Введите номер вершины, от которой требуется найти эйлеров цикл:", 1, countVert) - 1;
                             Stack<int> res = new Stack<int>();                              // эйлеров цикл
-                            Graph.EulerCycle(startVert, ref res, countVert, ref graph);     // поиск эйлерого цикла
+                            Graph.EulerCycle(startVert, ref res, countVert, ref graph);     // поиск эйлерового цикла
                             Graph.ShowEulerCycle(res);                                      // печать цикла
                             break;
                         }
@@ -42,7 +42,7 @@ namespace ex8
                             int countVert = graph.GetLength(0);                             // кол-во вершин в графе
                             int startVert = AskData.ReadIntNumber("Введите номер вершины, от которой требуется найти эйлеров цикл:", 1, countVert) - 1;
                             Stack<int> res = new Stack<int>();                              // эйлеров цикл
-                            Graph.EulerCycle(startVert, ref res, countVert, ref graph);     // поиск эйлерого цикла
+                            Graph.EulerCycle(startVert, ref res, countVert, ref graph);     // поиск эйлерового цикла
                             Graph.ShowEulerCycle(res);                                      // печать цикла
                             break;
                         }

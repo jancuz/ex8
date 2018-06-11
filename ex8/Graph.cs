@@ -32,7 +32,7 @@ namespace ex8
                 numConnection = numConnection - haveConnection;
                 for (int j = 0; j < numConnection; j++)    // для каждой вершины
                 {
-                    var numTry = 16;                       // 16 попыток
+                    var numTry = 20;                       // 20 попыток
 
                     while (numTry > 0)                     // пока соединение не найдено
                     {
@@ -50,7 +50,7 @@ namespace ex8
             }
         }
 
-        // создание случайной вершшины, не являющейся заданной
+        // создание случайной вершины, не являющейся заданной
         private static int RandomVertex(int countVertex, int startVertex)
         {
             int ans = rnd.Next(countVertex);
@@ -86,11 +86,10 @@ namespace ex8
             }
         }
 
-        // поиск эйлерого цикла
+        // поиск эйлерового цикла
         private static void Search(int v, ref Stack<int> Stack, int n, ref int[,] graph)
         {
-            int i;
-            for (i = 0; i < n; i++)
+            for (int i = 0; i < n; i++)
                 if (graph[v, i] != 0)                    // если есть инцидентные ребра
                 {
                     graph[v, i] = 0;                     // удаляем пройденное ребро
@@ -100,17 +99,17 @@ namespace ex8
             Stack.Push(v + 1);                           // запись пройденной вершины в стек
         }
 
-        // проверка графа и поиск эйлерого циикла
+        // проверка графа и поиск эйлерового циикла
         public static void EulerCycle(int v, ref Stack<int> Stack, int n, ref int[,] graph)
         {
             if (!CheckEven(graph, out int strMistake))   // проверка, является ли граф эйлеровым
             {
-                Console.WriteLine("Эйлерова цикла не существует!");
+                Console.WriteLine("Эйлерового цикла не существует!");
                 Console.WriteLine("Вершина с нечетной степенью: {0}", strMistake + 1);
             }
             else
             {
-                Search(v, ref Stack, n, ref graph);      // поиск эйлерова цикла
+                Search(v, ref Stack, n, ref graph);      // поиск эйлерового цикла
             }
         }
 
@@ -123,10 +122,10 @@ namespace ex8
             {
                 for (int j = 0; j < gr.GetLength(0); j++)
                 {
-                    if (gr[i, j] % 2 == 0) continue;
-                    countOdd++;
+                    if (gr[i, j] % 2 != 0)
+                        countOdd++;
                 }
-                if (countOdd % 2 != 0 || countOdd == 0)// если вершина не является четной или является несвязной
+                if (countOdd % 2 != 0)                 // если вершина не является четной
                 {
                     numStrWithMistake = i;             // вершина, содержащая ошибку
                     return false;                      // граф не является эйлеровым
@@ -136,7 +135,7 @@ namespace ex8
             return true;
         }
 
-        // печать эйлерого цикла
+        // печать эйлерового цикла
         public static void ShowEulerCycle(Stack<int> cycle)
         {
             foreach (var c in cycle)
