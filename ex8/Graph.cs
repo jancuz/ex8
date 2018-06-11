@@ -118,7 +118,7 @@ namespace ex8
         {
             var countOdd = 0;                           // кол-во заполненных ячеек (четность вершины)
             numStrWithMistake = -1;                     // строка с ошибкой (вершина с нечетной степенью)
-            for (var i = 0; i < gr.GetLength(0); i++)
+            for (int i = 0; i < gr.GetLength(0); i++)
             {
                 for (int j = 0; j < gr.GetLength(0); j++)
                 {
@@ -138,8 +138,11 @@ namespace ex8
         // печать эйлерового цикла
         public static void ShowEulerCycle(Stack<int> cycle)
         {
-            foreach (var c in cycle)
-                Console.Write(c + " ");
+            if (cycle.Count == 1)
+                Console.WriteLine("Эйлерового цикла не существует!");
+            else
+                foreach (var c in cycle)
+                    Console.Write(c + " ");
             Console.WriteLine("\n");
         }
     }
